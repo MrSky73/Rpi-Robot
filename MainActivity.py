@@ -1,6 +1,14 @@
 import tkinter as tk
-from tkinter import PhotoImage
-class AppWithCustomShapes:
+from tkinter import PhotoImage, filedialog
+import customtkinter
+# Uncomment the next line when running on a Raspberry Pi
+# import RPi.GPIO as GPIO
+
+customtkinter.set_appearance_mode("System") 
+customtkinter.set_default_color_theme("dark-blue")
+
+class App(customtkinter.CTk):
+
     def __init__(self, root):
         # Setting the main window properties
         self.root = root
@@ -13,6 +21,35 @@ class AppWithCustomShapes:
         self.create_command_buttons()
         self.create_settings_button()
 
+        #Display
+        # Camera or Image display
+        self.display_canvas = tk.Canvas(self.root, width=640, height=480, bg="black")
+        self.display_canvas.place(relx=0.5, rely=0.5, anchor="center")
+
+        # Switch between live camera and image gallery
+        self.switch_button = tk.Button(self.root, text="Switch to Gallery", command=self.switch_display)
+        self.switch_button.place(x=400, y=10)
+
+        self.live_camera = False
+
+        # Initialize GPIO (mock code, uncomment and modify for actual use on Raspberry Pi)
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Assuming pin 17 for camera input
+
+    def switch_display(self):
+        if self.live_camera:
+            self.switch_button.config(text="Switch to Gallery")
+            # Switch to image from gallery
+            file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])
+            if file_path:
+                self.image = tk.PhotoImage(file=file_path)
+                self.display_canvas.create_image(320, 240, image=self.image)
+        else:
+            self.switch_button.config(text="Switch to Live Camera")
+            # Mock code for displaying camera input, replace with actual camera input code
+            self.display_canvas.create_rectangle(10, 10, 630, 470, fill="blue", outline="yellow", width=3)
+        self.live_camera = not self.live_camera
+        
     def button_callback(self, button_name):
         print(f"{button_name} button pressed")
 
@@ -73,6 +110,10 @@ class AppWithCustomShapes:
         btn.place(relx=1.0, y=10, anchor="ne")
 
 # This block is for demonstration purposes. In actual implementation, you'll use the "if __name__ == '__main__':" block
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     app = App()
+#     app.mainloop()
 root = tk.Tk()
-app = AppWithCustomShapes(root)
+app = App(root)
 root.mainloop()
