@@ -4,6 +4,7 @@ from presentation.view.commonWidget.ArrowButton import ArrowButtons
 class MovementButton(tk.Canvas):
     def __init__(self, parent, command=None):
         super().__init__(parent)
+        self.grid() 
 
         arrow_size = 50
         x_offset = 10
@@ -14,7 +15,7 @@ class MovementButton(tk.Canvas):
         self.right_button = ArrowButtons(
             parent=self,
             arrow_size = arrow_size,
-            x_offset=x_offset,
+            x_offset=x_offset + 2*arrow_size,
             y_offset=y_offset,
             button_colour=button_colur,
             button_name="right",
@@ -44,8 +45,8 @@ class MovementButton(tk.Canvas):
         self.up_button = ArrowButtons(
             parent=self,
             arrow_size = arrow_size,
-            x_offset=x_offset,
-            y_offset=y_offset,
+            x_offset=x_offset + arrow_size,
+            y_offset=y_offset - arrow_size,
             button_colour=button_colur,
             button_name="up"
         )
@@ -53,8 +54,8 @@ class MovementButton(tk.Canvas):
         self.down_button = ArrowButtons(
             parent=self,
             arrow_size = arrow_size,
-            x_offset=x_offset,
-            y_offset=y_offset,
+            x_offset=x_offset + arrow_size,
+            y_offset=y_offset + arrow_size,
             button_colour=button_colur,
             button_name="down",
             x0= arrow_size/2,

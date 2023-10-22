@@ -15,8 +15,6 @@ class CircularButtons(tk.Canvas):
                  ):
         super().__init__(parent,width=width, height=height, bg=button_colour, highlightthickness=0)
         self.callback = callback
-
-        # canvas_b = tk.Canvas(self.root, width=width, height=height, bg=button_colour, highlightthickness=0)
-        # canvas_b.place(relx=relx, y=rely)
+        self.place(relx=relx, y=rely)
         self.create_oval(5, 5, 45, 45, fill=button_colour)
         self.bind("<Button-1>", lambda e: UseCase.button_callback(button_name))

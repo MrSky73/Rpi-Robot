@@ -19,6 +19,7 @@ class RectangularButton(tk.Canvas):
             text=button_name, 
             width=width, 
             height=height,
+            bg ="black",
             command=lambda: UseCase.button_callback(button_name)
             )
-        # btn.place(relx=relx, y = rely, anchor="ne")
+        self.btn.place(relx=relx, y = rely, anchor="ne")

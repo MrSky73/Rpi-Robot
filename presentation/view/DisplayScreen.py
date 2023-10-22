@@ -6,6 +6,7 @@ from presentation.view.commonWidget.DisplayScreenWidget import DisplayScreenWidg
 class DisplayScreen(tk.Frame):
     def __init__(self,parent):
         super().__init__(parent)
+        self.grid() 
         self.displayScreen = DisplayScreenWidget(
             parent=self,
             width=640,

@@ -4,6 +4,7 @@ from presentation.view.commonWidget.ImageButton import ImageButton
 class SettingsButton(tk.Canvas):
     def __init__(self, parent, callback=None):
         super().__init__(parent)
+        self.grid() 
         self.setting_button = ImageButton(
             parent=self,
             callback=callable,

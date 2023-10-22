@@ -22,4 +22,4 @@ class ImageButton(tk.Canvas):
         # icon = image.width(10)
         btn = tk.Button(self, image=icon, command=lambda: UseCase.button_callback(icon_name))
         btn.image = icon
-        # btn.place(relx=relx, y=rely, anchor="ne")
+        btn.place(relx=relx, y=rely, anchor="ne")

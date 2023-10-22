@@ -5,13 +5,16 @@ from presentation.view.commonWidget.RectangularButton import RectangularButton
 class CommandButton(tk.Frame):
     def __init__(self, parent, callback=None):
         super().__init__(parent)
+        self.grid() 
 
         # A button (Horizontal Rectangular)
         self.a_rectangular_button = RectangularButton(
             parent=self,
             button_name="A",
             width=20,
-            height=2
+            height=2,
+            relx=0.8,
+            rely=600
         )
 
         # B button (Circular)
@@ -31,5 +34,7 @@ class CommandButton(tk.Frame):
             parent=self,
             button_name="C",
             width=20,
-            height=2
+            height=2,
+            relx=1,
+            rely=500
         )

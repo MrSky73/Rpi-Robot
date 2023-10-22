@@ -26,21 +26,21 @@ class App(customtkinter.CTk):
 
         # Creating widgets
         self.movement_button = MovementButton(self.root)
-        self.movement_button.grid(row=0, column=0)
+        self.movement_button.grid(row=0,column=0)
 
         self.command_button = CommandButton(self.root)
-        self.command_button.grid(row=1, column=1)
+        self.command_button.grid(row=0,column=1)
 
         self.settings_button = SettingsButton(self.root)
-        self.command_button.grid(row=2, column=2)
+        self.settings_button.grid(row=1,column=0)
 
         # Camera or Image display
         self.display_screen = DisplayScreen(self.root)
-        self.display_screen.grid(row=3, column=3)
+        self.movement_button.grid(row=1,column=1)
 
         # Switch between live camera and image gallery
         self.switch_button = SwitchButton(self.root,callback=UseCase.switch_display)
-        self.switch_button.grid(row=4, column=4)
+        self.switch_button.place(x=400, y=10)
         self.live_camera = False
 
         # Initialize GPIO (mock code, uncomment and modify for actual use on Raspberry Pi)
