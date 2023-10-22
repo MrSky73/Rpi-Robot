@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import PhotoImage, filedialog
 import customtkinter
+from presentation.view.CommandButton import CommandButtons
+
+from presentation.view.MovementButton import MovementButtons
+from presentation.view.SettingButton import SettingsButton
 # Uncomment the next line when running on a Raspberry Pi
 # import RPi.GPIO as GPIO
 
@@ -16,10 +20,15 @@ class App(customtkinter.CTk):
         self.root.geometry("1024x600")
         self.root.configure(bg="white")
 
-        # Creating buttons
-        self.create_movement_buttons()
-        self.create_command_buttons()
-        self.create_settings_button()
+        # # Creating buttons
+        # self.create_movement_buttons()
+        # self.create_command_buttons()
+        # self.create_settings_button()
+
+        # Creating widgets
+        self.movement_buttons = MovementButtons(self.root, self.button_callback)
+        self.command_buttons = CommandButtons(self.root, self.button_callback)
+        self.settings_button = SettingsButton(self.root, self.button_callback)
 
         #Display
         # Camera or Image display
@@ -53,6 +62,7 @@ class App(customtkinter.CTk):
     def button_callback(self, button_name):
         print(f"{button_name} button pressed")
 
+    # Done
     def create_movement_buttons(self):
         arrow_size = 50
         x_offset = 10
@@ -81,11 +91,10 @@ class App(customtkinter.CTk):
         down_canvas.place(x=x_offset + arrow_size, y=y_offset + arrow_size)
         down_canvas.create_polygon(arrow_size/2, arrow_size, 0, 0, arrow_size, 0, fill="gray")
         down_canvas.bind("<Button-1>", lambda e: self.button_callback("down"))
-
+    # define rectangular and circular button need to Combine them
     def create_command_buttons(self):
         # A button (Horizontal Rectangular)
-        btn_a = tk.Button(self.root, text="A", width=20, height=2,
-                          command=lambda: self.button_callback("a"))
+        btn_a = tk.Button(self.root, text="A", width=20, height=2,command=lambda: self.button_callback("a"))
         btn_a.place(relx=0.8, y=600 - btn_a.winfo_reqheight())
 
         # B button (Circular)
@@ -95,8 +104,7 @@ class App(customtkinter.CTk):
         canvas_b.tag_bind(circle_b, "<Button-1>", lambda e: self.button_callback("b"))
 
         # C button (Vertical Rectangular)
-        btn_c = tk.Button(self.root, text="C", width=4, height=5,
-                          command=lambda: self.button_callback("c"))
+        btn_c = tk.Button(self.root, text="C", width=4, height=5,command=lambda: self.button_callback("c"))
         btn_c.place(relx=1, y = 500, anchor="ne")
 
     def create_settings_button(self):
