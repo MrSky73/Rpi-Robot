@@ -1,15 +1,16 @@
-class SettingsButton(tk.Frame):
-    def __init__(self, parent, callback):
-        super().__init__(parent)
-        self.callback = callback
-        self.create_settings_button()
+import tkinter as tk
+from presentation.view.commonWidget.ImageButton import ImageButton
 
-    def create_settings_button(self, relx, rely, icon_address, icon_name, zoom, subsample ):
-        image = PhotoImage(file=icon_address)
-        icon = image.zoom(zoom)
-        icon = image.subsample(subsample)
-        # icon = image.height(10)
-        # icon = image.width(10)
-        btn = tk.Button(self.root, image=icon, command=lambda: self.button_callback(icon_name))
-        btn.image = icon
-        btn.place(relx=relx, y=rely, anchor="ne")
+class SettingsButton(tk.Canvas):
+    def __init__(self, parent, callback=None):
+        super().__init__(parent)
+        self.setting_button = ImageButton(
+            parent=self,
+            callback=callable,
+            relx= 1.0,
+            rely=10,
+            icon_address="assets/settings_icon.png",
+            icon_name="Setting",
+            zoom=5,
+            subsample=10
+        )

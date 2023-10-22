@@ -1,9 +1,24 @@
-class RectangularButtons(tk.Frame):
-    def __init__(self, parent, callback):
-        super().__init__(parent)
-        self.callback = callback
-        self.create_rectangular_buttons()
+import tkinter as tk
+from presentation.UseCase import UseCase
 
-    def create_rectangular_buttons(self, button_name, width, height, relx, rely):
-        btn = tk.Button(self.root, text=button_name, width=width, height=height,command=lambda: self.button_callback(button_name))
-        btn.place(relx=relx, y = rely, anchor="ne")
+class RectangularButton(tk.Canvas):
+    def __init__(self, 
+                 parent, 
+                 callback=None,
+                 button_name= "test",
+                 width =1,
+                 height =1,
+                 relx =1,
+                 rely =1
+                 ):
+        super().__init__(parent,width=width,height=height)
+        self.callback = callback
+
+        self.btn = tk.Button(
+            self, 
+            text=button_name, 
+            width=width, 
+            height=height,
+            command=lambda: UseCase.button_callback(button_name)
+            )
+        # btn.place(relx=relx, y = rely, anchor="ne")

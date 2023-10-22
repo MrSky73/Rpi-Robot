@@ -1,15 +1,25 @@
-class ImageButton(tk.Frame):
-    def __init__(self, parent, callback):
+import tkinter as tk
+from presentation.UseCase import UseCase
+
+class ImageButton(tk.Canvas):
+    def __init__(self, 
+                 parent, 
+                 callback,
+                 relx, 
+                 rely, 
+                 icon_address, 
+                 icon_name, 
+                 zoom, 
+                 subsample
+                 ):
         super().__init__(parent)
         self.callback = callback
-        self.create_image_button()
 
-    def create_image_button(self, relx, rely, icon_address, icon_name, zoom, subsample ):
-        image = PhotoImage(file=icon_address)
+        image = tk.PhotoImage(file=icon_address)
         icon = image.zoom(zoom)
         icon = image.subsample(subsample)
         # icon = image.height(10)
         # icon = image.width(10)
-        btn = tk.Button(self.root, image=icon, command=lambda: self.button_callback(icon_name))
+        btn = tk.Button(self, image=icon, command=lambda: UseCase.button_callback(icon_name))
         btn.image = icon
-        btn.place(relx=relx, y=rely, anchor="ne")
+        # btn.place(relx=relx, y=rely, anchor="ne")
