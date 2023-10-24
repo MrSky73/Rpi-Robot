@@ -25,14 +25,7 @@ class App(customtkinter.CTk):
         self.root.configure(bg="white")
         self.use_case = UseCase(self.root)
 
-        # Creating widgets
-        # self.movement_button = MovementButton(self.root)
-        # self.movement_button.pack(pady=20)
-        # self.movement = MovementButton(self.root)
-
-        # self.command_button = CommandButton(self.root)
-        # self.command_button.grid(row=0,column=1)
-
+        # Creating widgets        
         self.settings_button = SettingButton(self.root)
         self.settings_button.pack(anchor="ne")
 
@@ -45,6 +38,13 @@ class App(customtkinter.CTk):
         self.use_case = UseCase(self)
         self.switch_button = SwitchButton(self.root,callback=self.use_case.switch_display)
         self.switch_button.pack(anchor="center")
+
+        #Controllers
+        self.movement_button = MovementButton(self.root)
+        self.movement_button.pack(side=tk.LEFT, anchor="sw", padx=10, pady=10)
+
+        self.command_button = CommandButton(self.root)
+        self.command_button.pack(side=tk.RIGHT,anchor="se",padx=10, pady=10)
 
         # Initialize GPIO (mock code, uncomment and modify for actual use on Raspberry Pi)
         # GPIO.setmode(GPIO.BCM)

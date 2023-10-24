@@ -1,40 +1,22 @@
+import customtkinter as ctk
 import tkinter as tk
-from presentation.view.commonWidget.CircularButton import CircularButtons
-from presentation.view.commonWidget.RectangularButton import RectangularButton
+
+from presentation.view.commonWidget.ControllerButton import ControllerButton
+
 
 class CommandButton(tk.Frame):
-    def __init__(self, parent, callback=None):
-        super().__init__(parent)
-        # self.grid() 
+    def __init__(self, master, bg="white",**kwargs):
+        super().__init__(master, bg="white",**kwargs)
+            
+        zoom =1
+        subSample=1
 
-        # A button (Horizontal Rectangular)
-        self.a_rectangular_button = RectangularButton(
-            parent=self,
-            button_name="A",
-            width=20,
-            height=2,
-            relx=0.8,
-            rely=600
-        )
+        self.addition_button = ControllerButton(self, "additon",zoom=zoom,subSample=subSample)
+        self.triangle_button = ControllerButton(self, "triangle",zoom=zoom,subSample=subSample)
+        self.cross_button = ControllerButton(self, "cross",zoom=zoom,subSample=subSample)
+        self.cirle_button = ControllerButton(self, "circle",zoom=zoom,subSample=subSample)
 
-        # B button (Circular)
-        self.b_circular_button = CircularButtons(
-            parent=self,
-            button_name="B",
-            width=50,
-            height=50,
-            relx=0.85,
-            rely=500,
-            button_colour="gray",
-            border_colour="black"
-        )
-
-        # C button (Vertical Rectangular)
-        self.a_rectangular_button = RectangularButton(
-            parent=self,
-            button_name="C",
-            width=20,
-            height=2,
-            relx=1,
-            rely=500
-        )
+        self.addition_button.grid(row=0, column=1)
+        self.triangle_button.grid(row=2, column=1)
+        self.cross_button.grid(row=1, column=0)
+        self.cirle_button.grid(row=1, column=2)

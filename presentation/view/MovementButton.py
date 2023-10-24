@@ -1,26 +1,20 @@
+import customtkinter as ctk
 import tkinter as tk
+
 from presentation.view.commonWidget.ArrowButton import ArrowButton
 
 class MovementButton(tk.Frame):
-    def __init__(self, parent, **kwargs):
-        super().__init__(parent, **kwargs)
-        
-        # Create arrow buttons
-        arrow_size = 50
-        x_offset = 10
-        y_offset = 525 - arrow_size
+    def __init__(self, master, bg="white",**kwargs):
+        super().__init__(master, bg="white",**kwargs)
+            
+        zoom =1
+        subSample=1
+        self.up_button = ArrowButton(self, "up",zoom=zoom,subSample=subSample)
+        self.down_button = ArrowButton(self, "down",zoom=zoom,subSample=subSample)
+        self.left_button = ArrowButton(self, "left",zoom=zoom,subSample=subSample)
+        self.right_button = ArrowButton(self, "right",zoom=zoom,subSample=subSample)
 
-        self.up_button = ArrowButton(self, direction="up", arrow_size=arrow_size)
-        self.up_button.place(x=x_offset + arrow_size, y=y_offset - arrow_size)
-
-        self.down_button = ArrowButton(self, direction="down" ,arrow_size=arrow_size)
-        self.down_button.place(x=x_offset + arrow_size, y=y_offset + arrow_size)
-
-        self.left_button = ArrowButton(self, direction="left", arrow_size=arrow_size)
-        self.left_button.place(x=x_offset, y=y_offset)
-
-        self.right_button = ArrowButton(self, direction="right", arrow_size=arrow_size)
-        self.right_button.place(x=x_offset + 2*arrow_size, y=y_offset) 
-
-        # Position the movement button frame
-        self.place(relx=0.05, rely=0.9, anchor="sw")
+        self.up_button.grid(row=0, column=1)
+        self.down_button.grid(row=2, column=1)
+        self.left_button.grid(row=1, column=0)
+        self.right_button.grid(row=1, column=2)
