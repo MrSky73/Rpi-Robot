@@ -1,0 +1,1 @@
+lambda: UseCase.button_callback("Setting")

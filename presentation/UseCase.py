@@ -6,6 +6,10 @@ class UseCase:
     def __init__(self, app):
         self.app = app
 
+    # def button_callback(self,button_name):
+    #     print(f"{button_name} button pressed")
+
+    @staticmethod
     def button_callback(button_name):
         print(f"{button_name} button pressed")
 

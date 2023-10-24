@@ -31,8 +31,3 @@ class ControllerButton(tk.Button):
         else:
             raise ValueError("Invalid direction: {}".format(direction))
 
-        self.bind("<Button-1>", self.on_click)
-
-    def on_click(self, event):
-        print("Arrow button clicked in direction: {}".format(self.direction))
-
