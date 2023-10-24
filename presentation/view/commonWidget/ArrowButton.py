@@ -1,36 +1,20 @@
 import tkinter as tk
-from presentation.UseCase import UseCase
+import customtkinter as ctk
 
-class ArrowButtons(tk.Canvas):
-    def __init__(self, 
-                parent, 
-                callback = None, 
-                arrow_size = 1, 
-                x_offset =0, 
-                y_offset =0, 
-                button_colour = "white",
-                button_name = "test",
-                x0=0,
-                y0=0, 
-                x1=0, 
-                y1=0, 
-                xy=0,
-                var=0
-        ):
+class ArrowButton(tk.Canvas):
+    def __init__(self, parent, direction="up", bg="black",arrow_size = 50, highlightthickness=0, command=None, **kwargs):
+        super().__init__(parent, **kwargs)
         
-        super().__init__(parent, width=arrow_size, height=arrow_size, bg="white", highlightthickness=0)
-        self.callback = callback
+        self.arrow_direction = direction
+        self.configure(command=command)
+        self.draw_arrow(arrow_size)
 
-        self.arrow_button = tk.Canvas(self, width=arrow_size, height=arrow_size, bg="white", highlightthickness=0)
-        self.arrow_button.place(x=x_offset, y=y_offset)
-        self.arrow_button.create_polygon(
-            x0, 
-            y0, 
-            x1, 
-            y1, 
-            xy,
-            var,
-            fill=button_colour
-        )
-        self.arrow_button.bind("<Button-1>", lambda e: UseCase.button_callback(button_name))
-        
+    def draw_arrow(self,arrow_size):
+        if self.arrow_direction == "up":
+            self.create_polygon(arrow_size/2, 0, 0, arrow_size, arrow_size, arrow_size, fill="gray")
+        elif self.arrow_direction == "down":
+            self.create_polygon(arrow_size/2, arrow_size, 0, 0, arrow_size, 0, fill="gray")
+        elif self.arrow_direction == "left":
+            self.create_polygon(0, arrow_size/2, arrow_size, 0, arrow_size, arrow_size, fill="gray")
+        elif self.arrow_direction == "right":
+            self.create_polygon(arrow_size, arrow_size/2, 0, 0, 0, arrow_size, fill="gray")

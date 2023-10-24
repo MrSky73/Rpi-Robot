@@ -1,25 +1,11 @@
 import tkinter as tk
-from presentation.UseCase import UseCase
+from tkinter import PhotoImage, filedialog
+import customtkinter as ctk
 
-class ImageButton(tk.Canvas):
-    def __init__(self, 
-                 parent, 
-                 callback,
-                 relx, 
-                 rely, 
-                 icon_address, 
-                 icon_name, 
-                 zoom, 
-                 subsample
-                 ):
-        super().__init__(parent)
-        self.callback = callback
+class ImageButton(tk.Button):
+    def __init__(self, parent, image_path, command=None, **kwargs):
+        super().__init__(parent, **kwargs)
 
-        image = tk.PhotoImage(file=icon_address)
-        icon = image.zoom(zoom)
-        icon = image.subsample(subsample)
-        # icon = image.height(10)
-        # icon = image.width(10)
-        btn = tk.Button(self, image=icon, command=lambda: UseCase.button_callback(icon_name))
-        btn.image = icon
-        btn.place(relx=relx, y=rely, anchor="ne")
+        self.image = PhotoImage(file = image_path)
+        self.icon = self.image.zoom(5).subsample(50)
+        self.configure(image=self.icon, command=command)

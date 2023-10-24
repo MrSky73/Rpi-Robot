@@ -1,17 +1,10 @@
 import tkinter as tk
 from presentation.view.commonWidget.ImageButton import ImageButton
 
-class SettingsButton(tk.Canvas):
-    def __init__(self, parent, callback=None):
-        super().__init__(parent)
-        self.grid() 
-        self.setting_button = ImageButton(
-            parent=self,
-            callback=callable,
-            relx= 1.0,
-            rely=10,
-            icon_address="assets/settings_icon.png",
-            icon_name="Setting",
-            zoom=5,
-            subsample=10
-        )
+class SettingButton(tk.Frame):
+    def __init__(self, parent, image_name= "Setting", command=None, **kwargs):
+        super().__init__(parent, **kwargs)
+        
+        asset_path = f"./assets/settings_icon.png" 
+        self.button = ImageButton(self, image_path=asset_path, command=command)
+        self.button.pack(padx=5, pady=5)

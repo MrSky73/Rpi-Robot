@@ -1,6 +1,11 @@
 import tkinter as tk
+import customtkinter as ctk
 
-class DisplayScreenWidget(tk.Canvas):
-    def __init__(self, parent, width=640, height=480, bg="black", relx =0.5, rely =0.5, anchor = "center",**kwargs,):
-        super().__init__(parent, width=width, height=height, bg=bg, **kwargs)
-        self.place(relx=relx, rely=rely, anchor=anchor)
+class DisplayScreenWidget(ctk.CTkFrame):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+
+        # You can customize this as per your requirements. 
+        # For now, it just displays a message.
+        self.label = tk.Label(self, text="Display Screen Here", bg="black", fg="white")
+        self.label.pack(expand=True, fill="both")

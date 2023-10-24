@@ -6,7 +6,7 @@ from presentation.UseCase import UseCase
 from presentation.view.CommandButton import CommandButton
 from presentation.view.DisplayScreen import DisplayScreen
 from presentation.view.MovementButton import MovementButton
-from presentation.view.SettingButton import SettingsButton
+from presentation.view.SettingButton import SettingButton
 from presentation.view.SwitchButton import SwitchButton
 
 # Uncomment the next line when running on a Raspberry Pi
@@ -23,25 +23,28 @@ class App(customtkinter.CTk):
         self.root.title("PiApp")
         self.root.geometry("1024x600")
         self.root.configure(bg="white")
+        self.use_case = UseCase(self.root)
 
         # Creating widgets
-        self.movement_button = MovementButton(self.root)
-        self.movement_button.grid(row=0,column=0)
+        # self.movement_button = MovementButton(self.root)
+        # self.movement_button.pack(pady=20)
+        # self.movement = MovementButton(self.root)
 
-        self.command_button = CommandButton(self.root)
-        self.command_button.grid(row=0,column=1)
+        # self.command_button = CommandButton(self.root)
+        # self.command_button.grid(row=0,column=1)
 
-        self.settings_button = SettingsButton(self.root)
-        self.settings_button.grid(row=1,column=0)
+        self.settings_button = SettingButton(self.root)
+        self.settings_button.pack(anchor="ne")
 
         # Camera or Image display
         self.display_screen = DisplayScreen(self.root)
-        self.movement_button.grid(row=1,column=1)
+        self.display_screen.pack(expand = True, fill= "both")
 
         # Switch between live camera and image gallery
-        self.switch_button = SwitchButton(self.root,callback=UseCase.switch_display)
-        self.switch_button.place(x=400, y=10)
         self.live_camera = False
+        self.use_case = UseCase(self)
+        self.switch_button = SwitchButton(self.root,callback=self.use_case.switch_display)
+        self.switch_button.pack(anchor="center")
 
         # Initialize GPIO (mock code, uncomment and modify for actual use on Raspberry Pi)
         # GPIO.setmode(GPIO.BCM)

@@ -5,7 +5,7 @@ from presentation.view.commonWidget.RectangularButton import RectangularButton
 class CommandButton(tk.Frame):
     def __init__(self, parent, callback=None):
         super().__init__(parent)
-        self.grid() 
+        # self.grid() 
 
         # A button (Horizontal Rectangular)
         self.a_rectangular_button = RectangularButton(
