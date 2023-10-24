@@ -10,8 +10,9 @@ class RectangularButton(ctk.CTkButton):
             height=32,
             border_width=0,
             corner_radius=2,
+            fg_color="gray",
             text="Button", 
-            command=None, 
+            command=None,
             **kwargs
                   ):
         super().__init__(
@@ -20,6 +21,7 @@ class RectangularButton(ctk.CTkButton):
             height=height,
             border_width=border_width,
             corner_radius=corner_radius,
+            fg_color=fg_color,
             text=text, 
             command=command, 
             **kwargs)

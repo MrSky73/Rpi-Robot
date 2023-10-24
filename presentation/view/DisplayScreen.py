@@ -6,3 +6,6 @@ class DisplayScreen(tk.Frame):
         super().__init__(parent, **kwargs)
         self.display_widget = DisplayScreenWidget(self)
         self.display_widget.pack(expand=True, fill="both")
+    
+    def create_image(self, x, y, **kwargs):
+        return self.display_widget.create_image(x, y, **kwargs)

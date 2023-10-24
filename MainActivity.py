@@ -23,7 +23,7 @@ class App(customtkinter.CTk):
         self.root.title("PiApp")
         self.root.geometry("1024x600")
         self.root.configure(bg="white")
-        # self.use_case = UseCase(self.root)
+        self.use_case = UseCase(self)
 
         # Creating widgets        
         self.settings_button = SettingButton(self.root, command=lambda: UseCase.button_callback("Setting"))
@@ -35,7 +35,14 @@ class App(customtkinter.CTk):
 
         # Switch between live camera and image gallery
         self.live_camera = False
-        self.switch_button = SwitchButton(self.root,callback=None)
+
+        #ofNoUse
+        x = self.display_screen.winfo_width()
+        y = self.display_screen.winfo_height()
+        print("Width:", x)
+        print("Height:", y)
+
+        self.switch_button = SwitchButton(self.root, text="Switch to Gallery", command=lambda:self.use_case.switch_display(x=x,y=y))
         self.switch_button.pack(anchor="center", padx=10, pady=10)
 
         #Controllers
